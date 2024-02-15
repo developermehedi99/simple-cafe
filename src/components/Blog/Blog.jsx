@@ -1,5 +1,8 @@
-const Blog = ({ blog }) => {
+import { IoBookmark } from "react-icons/io5";
+
+const Blog = ({ blog, handleBookMarks, handleTime }) => {
   const {
+    id,
     title,
     cover,
     author_img,
@@ -20,7 +23,12 @@ const Blog = ({ blog }) => {
             <p>{posted_date}</p>
           </div>
           <div>
-            <p>{reading_time} min read</p>
+            <button
+              onClick={() => handleBookMarks(blog)}
+              className="flex items-center gap-1"
+            >
+              {reading_time} min read <IoBookmark></IoBookmark>
+            </button>
           </div>
         </div>
       </div>
@@ -32,6 +40,12 @@ const Blog = ({ blog }) => {
           </span>
         ))}
       </p>
+      <button
+        onClick={() => handleTime(id, reading_time)}
+        className="text-blue-700 underline"
+      >
+        Mark as read
+      </button>
     </div>
   );
 };
